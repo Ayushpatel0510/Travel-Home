@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Home - Tour&Travel</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <link rel="stylesheet" href="/static/style2.css">
+
+</head>
+
+<body>
+    <!--header-->
+ 
+    <nav id="navbar" class="navbar-white">
+        <a href="/">
+            <img src="/static/images/logo.png" class="logo">
+        </a>
+        <ul class="nav-links">
+            <li><a href="/">Popular Places</a></li>
+            <li><a href="/travel" class="active">Travel Outside</a></li>
+            <li><a href="/listing">Online Packages</a></li>
+            <li><a href="{% url 'my_bookings' %}">My Bookings</a></li>
+        </ul>
+        {% if user.is_authenticated %}
+        <a href="/logout/" class="register-btn">Logout</a>
+        <span class="register-btn">Welcome, {{ user.username }}</span>
+        <i class="fa fa-bars" onclick="togglebtn()"></i>
+
+        {% else %}
+        <a href="/login/"  class="register-btn">Login</a>
+        <a href="/register/" class="register-btn">Register</a>
+        <i class="fa fa-bars" onclick="togglebtn()"></i>
+
+        {% endif %}
+    </nav>
+    <!--home-->
+    <section class="home" id="home">
+        <div class="video">
+            <video src="/static/images/v2.mp4" loop muted autoplay></video>
+        </div>
+        <div class="content">
+            <h1>explore new places, <br> adventure awaits.</h1>
+            <p>"Travel isn't always pretty. It isn't always comfortable. Sometimes it hurts. it even breaks your heart.
+                But that's OK. The journey changes you: it should change you. It leaves marks on your memory, on your
+                consciousness, on your heart, and on your body. You take something with you. Hopefully, you leave
+                something good behind"
+            </p>
+        </div>
+        <div class="form-container">
+            <form action="">
+                <h3>search your destination</h3>
+                <span>location</span>
+                <input type="text" placeholder="place you want to visit">
+                <span>guest members</span>
+                <input type="number" placeholder="number of peoples">
+                <span>arrival</span>
+                <input type="date">
+                <span>leaving</span>
+                <input type="date">
+                <input type="submit" value="search">
+            </form>
+        </div>
+    </section>
+    
+    <!--top places to travel section-->
+    <h1 class="heading"> <span>b</span>est <span>p</span>laces to <span>e</span>xplore</h1>
+    <br>
+    <br>
+    <div class="stories">
+        <div>
+            <img src="/static/images/t4.jpg">
+            <p>Hidden Gem alongside Maharastra's Coasts</p>
+        </div>
+        <div>
+
+            <img src="/static/images/t6.jpg">
+            <p>Picturesque Gateaway to Himalaya</p>
+        </div>
+        <div>
+            <img src="/static/images/t3.jpg">
+            <p>Nature Lover's Paradise in Gujurat</p>
+        </div>
+        <div>
+            <img src="/static/images/t1.jpg">
+            <p>A Pleasent summer retreat and a snowy winter wonderland </p>
+        </div>
+        <div>
+            <img src="/static/images/t2.jpg">
+            <p>Queen of Satpura Pachmarhi</p>
+        </div>
+
+    </div>
+
+    <!--gallery-->
+    <section id="gallery" class="gallery">
+        <h1 class="heading"> <span>g</span>allery</h1>
+        <div class="box-container">
+            <div class="box">
+                <img src="/static/images/g1.jpeg" alt="">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="fas fa-share"></a>
+                    <a href="#" class="fas fa-search"></a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="/static/images/g2.jpg" alt="">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="fas fa-share"></a>
+                    <a href="#" class="fas fa-search"></a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="/static/images/g3.jpg" alt="">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="fas fa-share"></a>
+                    <a href="#" class="fas fa-search"></a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="/static/images/g4.jpeg" alt="">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="fas fa-share"></a>
+                    <a href="#" class="fas fa-search"></a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="/static/images/g5.jpeg" alt="">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="fas fa-share"></a>
+                    <a href="#" class="fas fa-search"></a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="/static/images/g6.jpeg" alt="">
+                <div class="icons">
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="fas fa-share"></a>
+                    <a href="#" class="fas fa-search"></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--review-->
+    <section id="review" class="review">
+        <h1 class="heading"><span>r</span>eview</h1>
+        <div class="box-container">
+            <div class="box">
+
+                <div class="image">
+                    <img src="/static/images/r1.jpeg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Ritesh</h3>
+                    <p>Excellent services at affordable prices. </p>
+
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+
+                <div class="image">
+                    <img src="/static/images/r2.jpeg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Varun</h3>
+                    <p>Had an amazing experience, enjoyed a lot.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+
+                <div class="image">
+                    <img src="/static/images/r3.jpeg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Kartik</h3>
+                    <p>Had a great adventurous travel time.</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!--footer-->
+    <div class="container">
+        <div class="footer">
+            <a href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://youtube.com/"><i class="fab fa-youtube"></i></a>
+            <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+            <hr>
+            <p>Copyright © 2023, Travel Home.</p>
+        </div>
+    </div>
+    <script>
+        var navBar = document.getElementById("navbar"); function togglebtn() {
+            navBar.classList.toggle("hidemenu");
+        }
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Home - HOME</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <script src="https://kit.fontawesome.com/c8f20f991d.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div class="header">
+        <nav id="navbar">
+            <a href="/">
+                <img src="/static/images/logo.png" class="logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="/" class="active">Popular Places</a></li>
+                <li><a href="/travel">Travel Outside</a></li>
+                <li><a href="/listing">Online Packages</a></li>
+                <li><a href="{% url 'my_bookings' %}">My Bookings</a></li>
+            </ul>
+        
+
+                {% if user.is_authenticated %}
+                <a href="/logout/" class="register-btn">Logout</a>
+                <span class="register-btn">Welcome, {{ user.username }}</span>
+                <i class="fa fa-bars" onclick="togglebtn()"></i>
+
+                {% else %}
+                <a href="/login/"  class="register-btn">Login</a>
+                <a href="/register/" class="register-btn">Register</a>
+                <i class="fa fa-bars" onclick="togglebtn()"></i>
+
+                {% endif %}
+            
+        </nav>
+        <div class="container">
+            <h1>Find Your Next Stay</h1>
+            <div class="search-bar">
+                <form onsubmit="return validateForm()">
+                    <div class="location-input">
+                        <label>Location</label>
+                        <input type="text" placeholder="Where are you going?" required>
+                    </div>
+                    <div>
+                        <label>Check in</label>
+                        <input type="date" placeholder="Add Date" required>
+                    </div>
+                    <div>
+                        <label>Check out</label>
+                        <input type="date" placeholder="Add Date" required>
+                    </div>
+                    <div>
+                        <label>Guest</label>
+                        <input type="text" placeholder="Add Guest" required min="1">
+                    </div>
+                    <button type="submit"><img src="/static/images/search.png"></button>
+                </form>
+                <script>
+                    function validateForm() {
+                        const location = document.getElementById('location').value;
+                        const checkin = document.getElementById('checkin').value;
+                        const checkout = document.getElementById('checkout').value;
+                        const guests = document.getElementById('guests').value;
+                
+                        if (!location || !checkin || !checkout || !guests) {
+                            alert("Please fill in all fields.");
+                            return false;
+                        }
+                        return true;
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2 class="sub-title">Exclusives</h2>
+        <div class="exclusives">
+            <div>
+                <a href="/listing">
+
+                    <img src="/static/images/india.jpg">
+                    <span>
+                        <h3>India</h3>
+                        <p>starts @ $250</p>
+                    </span>
+                </a>
+            </div>
+            <div>
+                <img src="/static/images/image-2.png">
+                <span>
+                    <h3>Switzerland</h3>
+                    <p>starts @ $250</p>
+                </span>
+            </div>
+            <div>
+                <img src="/static/images/image-3.png">
+                <span>
+                    <h3>Australia</h3>
+                    <p>starts @ $250</p>
+                </span>
+            </div>
+            <div>
+                <img src="/static/images/image-4.png">
+                <span>
+                    <h3>France</h3>
+                    <p>starts @ $250</p>
+                </span>
+            </div>
+            <div>
+                <img src="/static/images/image-5.png">
+                <span>
+                    <h3>Amsterdam</h3>
+                    <p>starts @ $250</p>
+                </span>
+            </div>
+            <div>
+                <img src="/static/images/image-6.png">
+                <span>
+                    <h3>Netherland</h3>
+                    <p>starts @ $250</p>
+                </span>
+            </div>
+            <div>
+                <img src="/static/images/image-7.png">
+                <span>
+                    <h3>Chicago</h3>
+                    <p>starts @ $250</p>
+                </span>
+            </div>
+            <div>
+                <img src="/static/images/image-8.png">
+                <span>
+                    <h3>San Francisco</h3>
+                    <p>starts @ $250</p>
+                </span>
+            </div>
+            <div>
+                <img src="/static/images/image-9.png">
+                <span>
+                    <h3>London</h3>
+                    <p>starts @ $250</p>
+                </span>
+            </div>
+            <div>
+                <img src="/static/images/image-10.png">
+                <span>
+                    <h3>Shanghai</h3>
+                    <p>starts @ $250</p>
+                </span>
+            </div>
+        </div>
+
+        <h2 class="sub-title">Trending Places</h2>
+        <div class="trending">
+            <div>
+                <img src="/static/images/dubai.png">
+                <h3>Dubai</h3>
+            </div>
+            <div>
+                <img src="/static/images/new-york.png">
+                <h3>New York</h3>
+            </div>
+            <div>
+                <img src="/static/images/paris.png">
+                <h3>Paris</h3>
+            </div>
+            <div>
+                <a href="/listing"><img src="/static/images/new-delhi.png"></a>
+                <h3>New Delhi</h3>
+            </div>
+        </div>
+        <div class="cta">
+            <h3>Sharing <br>Is Earning Now</h3>
+            <p>Great opportunity to make money by <br>sharing your extra space.</p> <a href="#" class="cta-btn">Know
+                More</a>
+        </div>
+        <h2 class="sub-title">Travellers Stories</h2>
+        <div class="stories">
+            <div>
+                <img src="/static/images/story-1.png">
+                <p>Popular European countries with a budget of just $10,000</p>
+            </div>
+            <div>
+                <img src="/static/images/story-2.png">
+                <p>Traveled more than 100 Countries in less than a year</p>
+            </div>
+            <div>
+                <img src="/static/images/story-3.png">
+                <p>Best experience you get while traveling to Thailand</p>
+            </div>
+        </div>
+        <a href="#" class="start-btn">Start making money</a>
+        <div class="about-msg">
+            <h2>About Travel Home</h2>
+            <p>TravelHome is a website that connects people who want to rent out their homes with people who are looking
+                for accomodations in specific locale.
+                Our website helps people who are traveling find a home-like,cheaper than hotel place to stay during
+                their travel and also offers hosts a relatively easy way to earn
+                some income from their property.In addition to house renting our website also offers Tour&Travel services
+                at amazingly affordable prizes,so you can explore different
+                places,go on adventures and have during your travels.</p>
+        </div>
+        <div class="footer">
+            <a href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://youtube.com/"><i class="fab fa-youtube"></i></a>
+            <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+            <hr>
+            <p>Copyright © 2023, Travel Home.</p>
+        </div>
+    </div>
+</body>
+
+</html>

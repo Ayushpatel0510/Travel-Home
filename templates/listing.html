@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Home - LISTING</title>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+
+
+    <script src="https://kit.fontawesome.com/c8f20f991d.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <nav id="navbar" class="navbar-white">
+        <a href="/">
+        <img src="/static/images/logo.png" class="logo">
+    </a>
+        <ul class="nav-links">
+            <li><a href="/" >Popular Places</a></li>
+            <li><a href="/travel">Travel Outside</a></li>
+            <li><a href="/listing" class="active">Online Packages</a></li>
+            <li><a href="{% url 'my_bookings' %}">My Bookings</a></li>
+        </ul>
+        {% if user.is_authenticated %}
+        <a href="/logout/" class="register-btn">Logout</a>
+        <span class="register-btn">Welcome, {{ user.username }}</span>
+        <i class="fa fa-bars" onclick="togglebtn()"></i>
+
+        {% else %}
+        <a href="/login/"  class="register-btn">Login</a>
+        <a href="/register/" class="register-btn">Register</a>
+        <i class="fa fa-bars" onclick="togglebtn()"></i>
+
+        {% endif %}
+    </nav>
+    <div class="container">
+        <div class="list-container">
+
+            <div class="left-col">
+                <p>200+ Options</p>
+                <h1>Recommended places in Delhi</h1>
+                {% for property in properties %}
+                <div class="house">
+                    <div class="house-img">
+                        <img src="{{ property.image.url }}" alt="{{ property.name }}">
+                    </div>
+                    <div class="house-info">
+                        <a href="/property/{{ property.id }}">
+                            <p>{{ property.property_type }} in {{ property.location }}</p>
+                            <h3>{{ property.description }}</h3>
+                            <p>{{ property.bedrooms }} Bedroom / {{ property.bathrooms }} Bathroom / Wifi / Kitchen</p>
+                        </a>
+                        <div class="house-rating">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= property.rating|floatformat:0 %}
+                                    <i class="fa-solid fa-star"></i>
+                                {% elif forloop.counter0 < property.rating %}
+                                    <i class="fa-solid fa-star"></i>
+                                {% else %}
+                                    <i class="fa-regular fa-star"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="house-price">
+                            <p>{{ property.max_guests }} Guests</p>
+                            <h4>₹ {{ property.price_per_day }} /<span>day</span></h4>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+            <div class="right-col">
+                <div class="sidebar">
+                    <h2>Select Filters</h2>
+                    <h3>Property Type</h3>
+                    <div class="filter">
+                        <input type="checkbox">
+                        <p>House</p><span>(0)</span>
+                    </div>
+                    <div class="filter">
+                        <input type="checkbox">
+                        <p>Hostel</p><span>(0)</span>
+                    </div>
+                    <div class="filter">
+                        <input type="checkbox">
+                        <p>Flat</p><span>(0)</span>
+                    </div>
+                    <div class="filter">
+                        <input type="checkbox">
+                        <p>Villa</p><span>(0)</span>
+                    </div>
+                    <div class="filter">
+                        <input type="checkbox">
+                        <p>Guest Suite</p><span>(0)</span>
+                    </div>
+                    <h3>Amenities</h3>
+                    <div class="filter">
+                        <input type="checkbox">
+                        <p>Air conditionr</p><span>(0)</span>
+                    </div>
+                    <div class="filter">
+                        <input type="checkbox">
+                        <p>Wifi</p><span>(0)</span>
+                    </div>
+                    <div class="filter">
+                        <input type="checkbox">
+                        <p>Gym</p><span>(0)</span>
+                    </div>
+                    <div class="filter">
+                        <input type="checkbox">
+                        <p>Pool</p><span>(0)</span>
+                    </div>
+                    <div class="sidebar-link">
+                        <a href="#">View more</a>
+                    </div>
+                    <script>
+                        const filters = document.querySelectorAll(".filter input");
+                    
+                        filters.forEach(filter => {
+                            filter.addEventListener('change', function () {
+                                updateFilterCount(this);
+                            });
+                        });
+                    
+                        function updateFilterCount(checkbox) {
+                            const span = checkbox.nextElementSibling.nextElementSibling;
+                            let count = parseInt(span.textContent.replace(/\D/g, ''), 10);
+                            count = checkbox.checked ? count + 1 : count - 1;
+                            span.textContent = `(${count})`;
+                        }
+                    </script>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="pagination">
+            <img src="/static/images/arrow.png" >
+            <span class="current">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>&middot;&middot;&middot;&middot;</span>
+            <span>20</span>
+            <img src="/static/images/arrow.png" class="right-arrow">
+        </div>
+        <div class="footer">
+            <a href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://youtube.com/"><i class="fab fa-youtube"></i></a>
+            <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+            <hr>
+            <p>Copyright © 2023, Travel Home.</p>
+        </div>
+    </div>
+    <script>
+        var navBar = document.getElementById("navbar"); function togglebtn() {
+            navBar.classList.toggle("hidemenu");
+        }
+    </script>
+</body>
+
+</html>
