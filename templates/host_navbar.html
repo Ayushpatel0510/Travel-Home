@@ -1,0 +1,20 @@
+<nav id="navbar" class="navbar-white">
+    <a href="/">
+        <img src="/static/images/logo.png" class="logo">
+    </a>
+    <ul class="nav-links">
+        <li><a href="{%url 'host_dashboard'%}" >Home</a></li>
+        <li><a href="{% url 'my_properties' %} " class="{% if request.path == '/my-properties/' %}active{% endif %}">My Properties</a></li>
+    </ul>       
+    {% if user.is_authenticated %}
+    <a href="/logout/" class="register-btn">Logout</a>
+    <span class="register-btn">Welcome, {{ user.username }}</span>
+    <i class="fa fa-bars" onclick="togglebtn()"></i>
+    
+    {% else %}
+    <a href="/login/" class="register-btn">Login</a>
+    <a href="/register/" class="register-btn">Register</a>
+    <i class="fa fa-bars" onclick="togglebtn()"></i>
+    
+    {% endif %}
+</nav>

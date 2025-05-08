@@ -38,7 +38,20 @@ nav {
     text-decoration: none;
     color: #fff;
 }
-
+.nav-link.active-link {
+    position: relative;
+}
+.nav-link.active-link::after {
+    content: '';
+    width: 25px;
+    height: 2px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -12px;
+    border-radius: 2px;
+    background: #ff5361;
+}
 .register-btn {
     background: #fff;
     color: #000;
@@ -320,7 +333,7 @@ nav .fa-bars {
 
 /*review*/
 .review {
-    background: url(../images/review-bg.jpg), linear-gradient(#0098a1, #0098a1) no-repeat;
+    background:linear-gradient(#0098a1, #0098a1) no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

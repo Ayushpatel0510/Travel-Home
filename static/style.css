@@ -110,6 +110,7 @@ nav {
     font-weight: 600;
 }
 
+
 /*-----exclusives--*/
 .sub-title {
     margin: 50px 0 20px;
@@ -126,6 +127,10 @@ nav {
 
 .exclusives div img {
     width: 100%;
+    border-radius: 10px;
+}
+.exclusives button{
+    border: none;
     border-radius: 10px;
 }
 
@@ -159,6 +164,11 @@ nav {
 .trending h3 {
     font-weight: 600;
     margin-top: 10px;
+}
+.trending button{
+    background: none;
+    border: none;
+    border-radius: 10px;
 }
 
 /*-----call to action--*/
@@ -574,7 +584,7 @@ nav .fa-bars {
     transform: rotate(180deg);
 }
 
-.pagination span {
+.pagenum {
     margin: 10px 8px;
     width: 40px;
     height: 40px;
@@ -583,10 +593,16 @@ nav .fa-bars {
     border-radius: 50%;
     cursor: pointer;
 }
-
+.hidden{
+    display: none;
+}
 .pagination .current {
     background: #333;
     color: #fff;
+}
+.pagination a{
+    text-decoration: none;
+    color: #333;
 }
 
 /*for smaller screen*/
@@ -623,6 +639,50 @@ nav .fa-bars {
     }
 }
 
+/*----------my_booking page-----------*/
+.booking-card {
+    position: relative;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+
+  .booking-card img.property-image {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 300px;
+    height: 220px;
+    object-fit:fill;
+    border-radius: 6px;
+  }
+
+  .booking-details {
+    padding-right: 140px;
+  }
+
+
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.no-bookings {
+    color: #888;
+    font-style: italic;
+}
+.bookings-heading {
+    text-align: left;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 30px 0;
+    padding-left: 40px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #0c0c0c1a;
+    color: #333;
+  }
 /*----------house-details page-----------*/
 .house-details {
     padding: 0 12%;
@@ -652,22 +712,32 @@ nav .fa-bars {
     font-size: 14px;
 }
 
-.gallery {
+.image-gallery {
     display: grid;
-    grid-gap: 10px;
-    grid-template-areas: 'first first . .' 'first first . .';
-    margin: 20px 0;
-}
-
-.gallery div img {
-    width: 100%;
-    display: block;
+    grid-template-columns: 2fr 1fr; /* 2 parts main image, 1 part side images */
+    gap: 1rem;
+    align-items: start;
+  }
+  
+.main-image img {
+    width: 500px;
+    height: 300px;
+    object-fit:fill;
     border-radius: 10px;
-}
-
-.gallery-img-1 {
-    grid-area: first;
-}
+  }
+  
+.side-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  
+.side-images img {
+    width: 250px;
+    height: 146px;
+    object-fit: fill;
+    border-radius: 8px;
+  }
 
 .small-details h2 {
     font-weight: 500;
@@ -677,7 +747,22 @@ nav .fa-bars {
     text-align: right;
     font-size: 22px;
 }
-
+.custom-input {
+    justify-content: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 15px;
+    color: #4BB543;
+}
+.custom-textarea {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 15px;
+}
 .line {
     border: 0;
     height: 1px;
@@ -721,7 +806,9 @@ nav .fa-bars {
     width: 280px;
     border-radius: 8px;
     font-size: 16px;
+    
 }
+
 
 .guest-field {
     flex: 1;
@@ -846,6 +933,7 @@ nav .fa-bars {
         margin-bottom: 15px;
         border-radius: 4px;
         margin-top: 10px;
+        
     }
 
     .host {

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+  
 
 </head>
 
@@ -20,7 +22,7 @@
 
   <div class="container">
     <div class="row justify-content-center">
-      <form class="col-md-6 myform mt-5 mb-5" method="post">
+      <form class="col-md-6 myform mt-5 mb-5" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
         {% csrf_token %}
         <div class="text-center mt-3">
           <h2 class="text-primary">Registration Form</h2>
@@ -28,49 +30,62 @@
 
         <div class="row">
           <div class="col-md-6 form-group">
-            <label for="user_name">Name</label>
-            <input type="text" name="username" class="form-control" id="user_name" />
+            <label for="user_name">Username</label>
+            <input type="text" name="username" class="form-control" id="name"  required />
+          </div>
+          <div class="col-md-6 form-group">
+            <label for="user_name">First Name</label>
+            <input type="text" name="firstname" class="form-control"   required />
+          </div>
+          <div class="col-md-6 form-group">
+            <label for="user_name">Last Name</label>
+            <input type="text" name="lastname" class="form-control"   required />
           </div>
 
           <div class="col-md-6 form-group">
             <label for="user_email">Email</label>
-            <input type="text" name="email" class="form-control" id="user_email" />
+            <input type="text" name="email" class="form-control" id="email"  required/>
           </div>
         </div>
 
         <div class="form-group">
           <label for="address">Address </label>
-          <textarea name="address" id="address" class="form-control"></textarea>
+          <textarea name="address" id="address" class="form-control" required></textarea>
         </div>
 
         <div class="row">
           <div class="col-md-6 form-group">
             <label for="mobile">Mobile No.</label>
-            <input type="number" name="mobile" class="form-control" id="mobile" />
+            <input type="number" name="mobile" class="form-control" id="mobile"  required/>
           </div>
 
           <div class="col-md-6 form-group">
             <label for="pincode">Pincode</label>
-            <input type="number" name="pincode" class="form-control" id="pincode" />
+            <input type="number" name="pincode" class="form-control" id="pincode"  required/>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-6 form-group">
             <label for="password">Password</label>
-            <input type="password" name="password" class="form-control" id="password" />
+            <input type="password" name="password" class="form-control" id="password"  required/>
           </div>
 
           <div class="col-md-6 form-group">
             <label for="cpassword">Confirm Password</label>
-            <input type="password" name="" class="form-control" id="cpassword" />
+            <input type="password" name="cpassword" class="form-control" id="cpassword"  required/>
+            <p style="color: red;" id="password-error" class="text-red-500 text-sm mb-2 hidden">Passwords do not match.</p>
           </div>
+            <label for="profile_picture">Profile Picture</label>
+            <input type="file" name="profile_picture" id="profile_picture" class="form-control form-control-sm" required accept="image/*"/>
+            <label><input type="checkbox" name="is_host" /> I want to host properties</label>
         </div>
+        <p>Already have an account? <a href="{%url 'login'%}">Login</a></p>
 
         <div class="row mt-3 mb-3 text-center">
 
           <div class="col-md-6 ">
-            <button type="button" class="btn btn-danger">Reset</button>
+            <button type="reset" class="btn btn-danger">Reset</button>
           </div>
 
           <div class="col-md-6">
@@ -81,11 +96,29 @@
       </form>
     </div>
   </div>
-
+  {% include "footer.html" %}
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <script src="js/app.js"></script>
+  <script>
+    const form = document.querySelector('form');
+    const password = document.getElementById('password');
+    const confirm = document.getElementById('cpassword');
+    const error = document.getElementById('password-error');
+  
+    form.addEventListener('submit', function (e) {
+      if (password.value !== confirm.value) {
+        e.preventDefault();
+        error.classList.remove('hidden');
+      } else {
+        error.classList.add('hidden');
+      }
+    }
+    );
+    form.addEventListener('reset', function () {
+      error.classList.add('hidden');
+    });
+  </script>
 </body>
 
 </html>
