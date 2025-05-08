@@ -1,13 +1,15 @@
 
 🏠 TravelHome - Property Booking Web App
 
-TravelHome is a Django-based web application that allows users to register, log in, view property listings, book stays, and manage their own bookings.
+TravelHome is a Django-based web application that allows users to register, log in, browse and book properties, and manage bookings. Hosts can list properties and manage them through a dedicated dashboard.
 
 📦 Features
-- User registration and login
+- User registration and login with password confirmation
 - Property listings and detail pages
 - Booking system with check-in, check-out, and guest fields
-- User-specific booking history
+- User dashboard to manage bookings
+- Host dashboard to manage property listings
+- Property browsing through search feature and filters
 - Django messages for feedback
 - CSRF protection
 - Admin dashboard to manage users, bookings, and properties
@@ -16,7 +18,7 @@ TravelHome is a Django-based web application that allows users to register, log 
 - **Backend:** Python, Django
 - **Frontend:** HTML, CSS, Javascript (or custom styling)
 - **Database:** SQLite (can be configured to PostgreSQL)
-- **Server:** Django’s built-in dev server (use Gunicorn + Nginx for production)
+- **Server:** Django’s built-in dev server 
 - **Templating Engine:** Django Templates
 
 ⚙️ Requirements
@@ -56,7 +58,6 @@ TravelHome is a Django-based web application that allows users to register, log 
 
 🔧 Configuration Notes
 - CSRF protection is enabled by default. Make sure all POST forms have {% csrf_token %} in templates.
-- UserProfile model is linked to Django User using a signal in signals.py. Ensure the signal is imported in apps.py or ready() method.
 - Static files are served via Django in dev; for production, configure using WhiteNoise or collectstatic.
 
 👨‍💻 Author
